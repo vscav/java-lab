@@ -31,8 +31,10 @@ public class Morse {
 			for (String arg : args) {
 				builder.append(arg).append(" Stop. ");
 			}
+			
+			String s = builder.toString();
 
-			System.out.println(builder);
+			System.out.println(s);
 		}
 
 		// Q.04
