@@ -34,12 +34,12 @@ public class Book {
 
 	// Ex1 - Q.09
 	public Book(final String t) {
-		this(t, "<no author>");
+		this(t, "<no author>"); // Will call the default constructor
 	}
 
 	// Ex1 - Q.10
 	public Book() {
-		this(" ", "<no author>"); // Will call the default constructor
+		this("", "<no author>"); // Will call the default constructor
 	}
 
 	// Ex1 - Q.05
@@ -77,7 +77,7 @@ public class Book {
 
 	// Ex3 - Q.01
 	// public String toString() {
-	// return title + " by " + author;
+	// 		return title + " by " + author;
 	// }
 
 	// Ex3 - Q.02
@@ -85,6 +85,11 @@ public class Book {
 	// method from java.lang.Object.
 	@Override
 	public String toString() {
+		if(title.isEmpty()) { return author + "!"; }
+		if(!title.isEmpty() && author.equals("<no author>")) {
+			return title;
+		}
+		
 		return title + " by " + author;
 	}
 

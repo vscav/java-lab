@@ -67,7 +67,7 @@ public class RegEx {
 		// Q.04
 
 		// Arguments: 127.0.0.1 108.9.98.3 234.0.32.11.34 112.28.255
-		// Expected outputs: 
+		// Expected outputs:
 		// [127, 0, 0, 1]
 		// [108, 9, 98, 3]
 
@@ -89,6 +89,8 @@ public class RegEx {
 	}
 
 	public static int[] parseIpv4(final String string) throws Exception {
+		// String zeroTo255 = "^([01][0-9][0-9]|2[0-4][0-9]|25[0-5])$";
+		// String regex = zeroTo255 + "\\." + zeroTo255 + "\\." + zeroTo255 + "\\." + zeroTo255;
 		String regex = "^(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})$";
 		Pattern p = Pattern.compile(regex);
 		Matcher m = p.matcher(string);
@@ -96,7 +98,7 @@ public class RegEx {
 		int[] ipAddress = null;
 		if (m.find()) {
 			ipAddress = new int[4];
-			
+
 			ipAddress[0] = Integer.parseInt(m.group(1));
 			ipAddress[1] = Integer.parseInt(m.group(2));
 			ipAddress[2] = Integer.parseInt(m.group(3));

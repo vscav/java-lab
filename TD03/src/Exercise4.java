@@ -7,6 +7,8 @@ public class Exercise4 {
 		final int to = 4;
 
 		swap(intArray, 0, 9);
+		swap(intArray, 1, 7);
+		swap(intArray, 3, 4);
 		System.out.println("Content of the array after swap operation: ");
 		for (int element : intArray) {
 			System.out.println(element);
