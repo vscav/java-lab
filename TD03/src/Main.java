@@ -4,7 +4,7 @@ public class Main {
 	public static void main(String[] args) {
 		// Ex1 - Q.03
 
-		var book = new Book("coucou");
+		var book = new Book("The Black Dahlia");
 		// System.out.println(book.title + ' ' + book.author);
 
 		// Attributes title and author are declared private in the Book class.

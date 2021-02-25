@@ -21,6 +21,12 @@ public class Exercise4 {
 		int minimumValueIndexInRange = indexOfMin(intArray, from, to);
 		System.out.println("Between index " + from + " and " + to + ", minimum value is at index: "
 				+ minimumValueIndexInRange + " and is " + intArray[minimumValueIndexInRange]);
+		
+		sort(intArray);
+		System.out.println("Content of the array after sort operation: ");
+		for (int element : intArray) {
+			System.out.println(element);
+		}
 	}
 
 	static void swap(int[] array, int index1, int index2) {
@@ -49,6 +55,18 @@ public class Exercise4 {
 			if (array[i] < array[minIndex])
 				minIndex = i;
 		return minIndex;
+	}
+	
+	static void sort(int[] array) {
+		sort(array, 0, array.length);
+	}
+	
+	static void sort(int[] array, final int from, final int to) {		
+		int minIndex = indexOfMin(array, from, to);
+		swap(array, from, minIndex);
+		for(int i = from + 1; i < to; i++) {
+			sort(array, from + 1, to);
+		}
 	}
 
 }

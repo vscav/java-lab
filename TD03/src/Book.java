@@ -1,6 +1,13 @@
 import java.util.Objects;
 
 public class Book {
+	
+	// Ex3 - Q.03
+	// We create a new String object inherent to the class. If by any chance 
+	// the author of a book is "<no author>", it will be interpret as a different String
+	// than the one used to create a book that has no author because they are not
+	// in the same memory location.
+	final static private String noAuthor = new String("<no author>");
 
 	// Ex1 - Q.06
 	// We can use the keyword "final" to indicate
@@ -26,20 +33,18 @@ public class Book {
 	// We can use the keyword this to differentiate the object attribute
 	// and the constructor parameters.
 	public Book(final String title, final String author) {
-		Objects.requireNonNull(title);
-		Objects.requireNonNull(author);
-		this.title = title;
-		this.author = author;
+		this.title = Objects.requireNonNull(title);
+		this.author = Objects.requireNonNull(author);
 	}
 
 	// Ex1 - Q.09
 	public Book(final String t) {
-		this(t, "<no author>"); // Will call the default constructor
+		this(t, noAuthor); // Will call the default constructor
 	}
 
 	// Ex1 - Q.10
 	public Book() {
-		this("", "<no author>"); // Will call the default constructor
+		this("", noAuthor); // Will call the default constructor
 	}
 
 	// Ex1 - Q.05
@@ -66,6 +71,10 @@ public class Book {
 	// method in the subclass is said to override the method in the super-class.
 	@Override
 	public boolean equals(Object other) {
+		if(other == null)
+			return false;
+		if(other.getClass() != getClass())
+			return false;
 		if (other == this)
 			return true;
 		if (!(other instanceof Book))
@@ -85,8 +94,8 @@ public class Book {
 	// method from java.lang.Object.
 	@Override
 	public String toString() {
-		if(title.isEmpty()) { return author + "!"; }
-		if(!title.isEmpty() && author.equals("<no author>")) {
+		if(title.isEmpty()) { return noAuthor + "!"; }
+		if(!title.isEmpty() && author == (noAuthor)) {
 			return title;
 		}
 		
