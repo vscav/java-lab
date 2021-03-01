@@ -10,10 +10,12 @@ public class ArrayShoppingCart {
 
 	final private Book[] books;
 	private int numberOfBooks;
+	private int maximumNumberOfBooks;
 
 	public ArrayShoppingCart(final int maximumOfBooks) {
 		this.books = new Book[maximumOfBooks];
 		this.numberOfBooks = 0;
+		this.maximumNumberOfBooks = maximumOfBooks;
 	}
 
 	public ArrayShoppingCart() {
@@ -28,8 +30,11 @@ public class ArrayShoppingCart {
 		return numberOfBooks;
 	}
 
+	// Ex2 - Q.02
+	// We have to add a if statement in order
+	// to control if the car has reached its maximum size.
 	Book[] add(Book book) {
-		if (this.numberOfBooks < maxBook) {
+		if (this.numberOfBooks < this.maximumNumberOfBooks) {
 			books[this.numberOfBooks] = book;
 			this.numberOfBooks += 1;
 		}
@@ -37,6 +42,7 @@ public class ArrayShoppingCart {
 		return books;
 	}
 
+	// Ex2 - Q.03
 	@Override
 	public String toString() {
 		String booksCount = this.numberOfBooks() > 1 ? " books): \n" : " book): \n";
@@ -49,6 +55,7 @@ public class ArrayShoppingCart {
 		return builder.toString();
 	}
 
+	// Ex2 - Q.04
 	public Book longestTitle() {
 		Book longestTitleBook = this.books[0];
 		boolean sameLength = false;
@@ -62,8 +69,9 @@ public class ArrayShoppingCart {
 				}
 			}
 		}
-		
-		if(sameLength) return null;
+
+		if (sameLength)
+			return null;
 
 		return longestTitleBook;
 	}

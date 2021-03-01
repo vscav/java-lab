@@ -2,7 +2,7 @@
 public class ShoppingCartTest {
 
 	public static void main(String[] args) {
-		// Ex2
+		// Ex2 (ArrayShoppingCart) - Tests
 		
 		ArrayShoppingCart shoppingCart = new ArrayShoppingCart(5);
 
@@ -14,7 +14,7 @@ public class ShoppingCartTest {
 
 		System.out.println(shoppingCart.longestTitle() + " is the book with the longest title currently in the Array shopping cart. \n");
 		
-		// Ex3
+		// Ex3 (FreeShoppingCart) - Tests
 		
 		FreeShoppingCart freeShoppingCart = new FreeShoppingCart();
 		

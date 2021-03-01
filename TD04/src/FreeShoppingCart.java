@@ -3,6 +3,9 @@ import java.util.Iterator;
 
 public class FreeShoppingCart {
 
+	// Ex3 - Q.01
+	// Elements in an ArrayList are actually objects. And we have to specify
+	// the type of objects contained in our ArrayList.
 	final private ArrayList<Book> books;
 
 	public FreeShoppingCart() {
@@ -65,9 +68,10 @@ public class FreeShoppingCart {
 	 * 
 	 */
 
+	// TODO
 	// Ex3 - Q.04
-
 	// How does the compiler compile a for each loop on a collection?
+	// 
 
 	public Book longestTitle() {
 		Book longestTitleBook = this.books.get(0);
@@ -92,9 +96,7 @@ public class FreeShoppingCart {
 
 	// Ex3 - Q.05
 
-	// For an Array List of length N, the complexity is O(N) for the average and
-	// worst cases.
-	// In the best case, the complexity is actually O(1).
+	// For an Array List of length N, the complexity is O(N).
 
 	/*
 	 * 
@@ -105,7 +107,8 @@ public class FreeShoppingCart {
 
 	// Ex3 - Q.06
 
-	// Time complexity:
+	// For an Array List of length N, using iterator, the complexity is O(N). In the
+	// best case, it is O(1).
 
 	public void removeFirstOccurence(Book book) {
 		Iterator<Book> iterator = this.books.iterator();
@@ -115,9 +118,10 @@ public class FreeShoppingCart {
 				iterator.remove();
 		}
 	}
-	
+
 	// Ex3 - Q.07
-	
-	// 
+
+	// We should use iterators if we need to modify collection or delete items in
+	// our loop.
 
 }
