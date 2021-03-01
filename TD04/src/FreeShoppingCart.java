@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Optional;
 
 public class FreeShoppingCart {
 
@@ -13,6 +14,9 @@ public class FreeShoppingCart {
 	}
 
 	public boolean add(Book book) {
+		if (book == null) {
+			throw new NullPointerException("Null was passed as argument in add method.");
+		}
 		return this.books.add(book);
 	}
 
@@ -22,76 +26,77 @@ public class FreeShoppingCart {
 
 	@Override
 	public String toString() {
-		String booksCount = this.numberOfBooks() > 1 ? " books): \n" : " book): \n";
-		StringBuilder builder = new StringBuilder("Free shopping cart (");
-		builder.append(this.numberOfBooks()).append(booksCount);
-		for (Book book : this.books) {
-			builder.append("- ").append(book).append("\n");
+		StringBuilder builder;
+		if (this.numberOfBooks() == 0) {
+			builder = new StringBuilder("The cart is empty. \n");
+		} else {
+			String booksCount = this.numberOfBooks() > 1 ? " books): \n" : " book): \n";
+			builder = new StringBuilder("Free shopping cart (");
+			builder.append(this.numberOfBooks()).append(booksCount);
+			for (Book book : this.books) {
+				builder.append("- ").append(book).append("\n");
+			}
 		}
-
 		return builder.toString();
 	}
 
 	/*
 	 * Ex3 - Q.02
 	 * 
-	 * public Book longestTitle() { Book longestTitleBook = this.books.get(0);
-	 * boolean sameLength = false; for (int i = 1; i < this.numberOfBooks(); i++) {
-	 * if (longestTitleBook.title().length() <= this.books.get(i).title().length())
-	 * { if (longestTitleBook.title().length() ==
-	 * this.books.get(i).title().length()) { sameLength = true; } else { sameLength
-	 * = false; longestTitleBook = this.books.get(i); } } }
+	 * public Optional<Book> longestTitle() { if (this.numberOfBooks() == 0) {
+	 * return Optional.empty(); } Book longestTitleBook = this.books.get(0); for
+	 * (int i = 1; i < this.numberOfBooks(); i++) { int longestTitleBookLength =
+	 * longestTitleBook.title().length(); int currentBookLength =
+	 * this.books.get(i).title().length(); if (longestTitleBookLength <=
+	 * currentBookLength) { if (longestTitleBookLength == currentBookLength) {
+	 * continue; } else { longestTitleBook = this.books.get(i); } } }
 	 * 
-	 * if(sameLength) return null;
-	 * 
-	 * return longestTitleBook; }
+	 * return Optional.ofNullable(longestTitleBook); }
 	 * 
 	 */
 
 	/*
+	 * Ex3 - Q.03
 	 * 
-	 * ·Ex3 - Q.03
+	 * public Optional<Book> longestTitle() { if (this.numberOfBooks() == 0) {
+	 * return Optional.empty(); }
 	 * 
-	 * public Book longestTitle() { Book longestTitleBook = this.books.get(0);
-	 * boolean sameLength = false;
+	 * Book longestTitleBook = this.books.get(0); Iterator<Book> iterator =
+	 * this.books.iterator();
 	 * 
-	 * Iterator<Book> iterator = this.books.iterator();
+	 * while (iterator.hasNext()) { int longestTitleBookLength =
+	 * longestTitleBook.title().length(); int currentBookLength =
+	 * iterator.next().title().length(); if (longestTitleBookLength <=
+	 * currentBookLength) { if (longestTitleBookLength == currentBookLength) {
+	 * continue; } else { longestTitleBook = iterator.next(); } } }
 	 * 
-	 * while(iterator.hasNext()) { if (longestTitleBook.title().length() <=
-	 * iterator.next().title().length()) { if (longestTitleBook.title().length() ==
-	 * iterator.next().title().length()) { sameLength = true; } else { sameLength =
-	 * false; longestTitleBook = iterator.next(); } } }
-	 * 
-	 * if (sameLength) return null;
-	 * 
-	 * return longestTitleBook; }
+	 * return Optional.ofNullable(longestTitleBook); }
 	 * 
 	 */
 
-	// TODO
 	// Ex3 - Q.04
 	// How does the compiler compile a for each loop on a collection?
-	// 
 
-	public Book longestTitle() {
+	public Optional<Book> longestTitle() {
+		if (this.numberOfBooks() == 0) {
+			return Optional.empty();
+		}
+
 		Book longestTitleBook = this.books.get(0);
-		boolean sameLength = false;
 
 		for (Book book : this.books) {
-			if (longestTitleBook.title().length() <= book.title().length()) {
-				if (longestTitleBook.title().length() == book.title().length()) {
-					sameLength = true;
+			int longestTitleBookLength = longestTitleBook.title().length();
+			int currentBookLength = book.title().length();
+			if (longestTitleBookLength <= currentBookLength) {
+				if (longestTitleBookLength == currentBookLength) {
+					continue;
 				} else {
-					sameLength = false;
 					longestTitleBook = book;
 				}
 			}
 		}
 
-		if (sameLength)
-			return null;
-
-		return longestTitleBook;
+		return Optional.ofNullable(longestTitleBook);
 	}
 
 	// Ex3 - Q.05
@@ -122,6 +127,6 @@ public class FreeShoppingCart {
 	// Ex3 - Q.07
 
 	// We should use iterators if we need to modify collection or delete items in
-	// our loop.
+	// our loop because it would be way more efficient in terms of time complexity.
 
 }

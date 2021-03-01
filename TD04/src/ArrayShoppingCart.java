@@ -1,3 +1,5 @@
+import java.util.Optional;
+
 public class ArrayShoppingCart {
 
 	// Ex2 - Q.01
@@ -13,8 +15,8 @@ public class ArrayShoppingCart {
 	private int maximumNumberOfBooks;
 
 	public ArrayShoppingCart(final int maximumOfBooks) {
-		if (maximumOfBooks < 1) {
-			throw new IllegalArgumentException("Argument (maximumBooks) must be a non null positive integer.");
+		if (maximumOfBooks < 0) {
+			throw new IllegalArgumentException("Argument (maximumBooks) must be a positive (or null) integer.");
 		}
 		this.books = new Book[maximumOfBooks];
 		this.numberOfBooks = 0;
@@ -23,10 +25,6 @@ public class ArrayShoppingCart {
 
 	public ArrayShoppingCart() {
 		this(maxBook);
-	}
-
-	public Book[] books() {
-		return books;
 	}
 
 	public int numberOfBooks() {
@@ -42,7 +40,8 @@ public class ArrayShoppingCart {
 			throw new NullPointerException("Null was passed as argument in add method.");
 		}
 		if (this.numberOfBooks >= this.maximumNumberOfBooks) {
-			throw new IllegalStateException("Cannot add new book (maximum capacity reached) :" + book.toString());
+			throw new IllegalStateException(
+					"Cannot add book (" + book.toString() + "): maximum cart capacity reached.");
 		}
 		books[this.numberOfBooks] = book;
 		this.numberOfBooks += 1;
@@ -52,35 +51,42 @@ public class ArrayShoppingCart {
 	// Ex2 - Q.03
 	@Override
 	public String toString() {
-		String booksCount = this.numberOfBooks() > 1 ? " books): \n" : " book): \n";
-		StringBuilder builder = new StringBuilder("Array shopping cart (");
-		builder.append(this.numberOfBooks).append(booksCount);
-		for (int i = 0; i < this.numberOfBooks; i++) {
-			builder.append("- ").append(this.books[i]).append("\n");
+		StringBuilder builder;
+		if (this.numberOfBooks() == 0) {
+			builder = new StringBuilder("The cart is empty. \n");
+		} else {
+			String booksCount = this.numberOfBooks() > 1 ? " books): \n" : " book): \n";
+			builder = new StringBuilder("Array shopping cart (");
+			builder.append(this.numberOfBooks).append(booksCount);
+			for (int i = 0; i < this.numberOfBooks; i++) {
+				builder.append("- ").append(this.books[i]).append("\n");
+			}
 		}
 
 		return builder.toString();
 	}
 
 	// Ex2 - Q.04
-	public Book longestTitle() {
+	public Optional<Book> longestTitle() {
+		if (this.numberOfBooks == 0) {
+			return Optional.empty();
+		}
+		
 		Book longestTitleBook = this.books[0];
-		boolean sameLength = false;
+		
 		for (int i = 1; i < this.numberOfBooks; i++) {
-			if (longestTitleBook.title().length() <= this.books[i].title().length()) {
-				if (longestTitleBook.title().length() == this.books[i].title().length()) {
-					sameLength = true;
+			int longestTitleBookLength = longestTitleBook.title().length();
+			int currentBookLength = this.books[i].title().length();
+			if (longestTitleBookLength <= currentBookLength) {
+				if (longestTitleBookLength == currentBookLength) {
+					continue;
 				} else {
-					sameLength = false;
 					longestTitleBook = this.books[i];
 				}
 			}
 		}
-
-		if (sameLength)
-			return null;
-
-		return longestTitleBook;
+		
+		return Optional.ofNullable(longestTitleBook);
 	}
 
 }
