@@ -13,6 +13,9 @@ public class ArrayShoppingCart {
 	private int maximumNumberOfBooks;
 
 	public ArrayShoppingCart(final int maximumOfBooks) {
+		if (maximumOfBooks < 1) {
+			throw new IllegalArgumentException("Argument (maximumBooks) must be a non null positive integer.");
+		}
 		this.books = new Book[maximumOfBooks];
 		this.numberOfBooks = 0;
 		this.maximumNumberOfBooks = maximumOfBooks;
@@ -31,14 +34,18 @@ public class ArrayShoppingCart {
 	}
 
 	// Ex2 - Q.02
-	// We have to add a if statement in order
-	// to control if the car has reached its maximum size.
+	// We have to add exception management
+	// to control if the car has reached its maximum size or if it was indeed book
+	// that was passed as an argument.
 	Book[] add(Book book) {
-		if (this.numberOfBooks < this.maximumNumberOfBooks) {
-			books[this.numberOfBooks] = book;
-			this.numberOfBooks += 1;
+		if (book == null) {
+			throw new NullPointerException("Null was passed as argument in add method.");
 		}
-
+		if (this.numberOfBooks >= this.maximumNumberOfBooks) {
+			throw new IllegalStateException("Cannot add new book (maximum capacity reached) :" + book.toString());
+		}
+		books[this.numberOfBooks] = book;
+		this.numberOfBooks += 1;
 		return books;
 	}
 
