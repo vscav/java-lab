@@ -75,7 +75,8 @@ public class FreeShoppingCart {
 	 */
 
 	// Ex3 - Q.04
-	// How does the compiler compile a for each loop on a collection?
+	
+	// If we have an Iterable object, we get a loop with iterator from the compiler.
 
 	public Optional<Book> longestTitle() {
 		if (this.numberOfBooks() == 0) {
@@ -127,6 +128,10 @@ public class FreeShoppingCart {
 	// Ex3 - Q.07
 
 	// We should use iterators if we need to modify collection or delete items in
-	// our loop because it would be way more efficient in terms of time complexity.
+	// our loop because it would be way more efficient (especially in terms of time
+	// complexity).
+	// When just reading each element, one by one and in order, a foreach loop
+	// should
+	// be chosen over an iterator, as it is more convenient and concise.
 
 }
