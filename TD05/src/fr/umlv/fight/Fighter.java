@@ -24,39 +24,46 @@ public class Fighter extends Robot {
 	}
 
 	@Override
-	protected boolean rollDice() {
+	boolean rollDice() {
 		return this.randomGenerator.nextBoolean();
 	}
 
 	@Override
-	protected String getType() {
+	String getType() {
 		return "Fighter";
 	}
-	
+
 	// Ex2 - Q.09
-	
-	// 
 
-	// Exercise 2: tests
-	public static void main(String[] args) {
-		// Fight between a robot and a human fighter
-		Robot d2r2 = new Robot("D2R2");
-		Fighter nils = new Fighter("Nils");
-		try {
-			System.out.println(Arena.fight(d2r2, nils) + " wins");
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		
-		// Fight between two human fighters
-		Fighter john = new Fighter("John", 1);
-		Fighter jane = new Fighter("Jane", 2);
-		try {
-			System.out.println(Arena.fight(john, jane) + " wins");
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-
-	}
+	// Subtyping:
+	//
+	// Let’s take a type A and a type B. Type B is called a
+	// subtype of type A if an instance of B can be used in every situation where an
+	// instance of A is required. In a way, the subtype does everything the
+	// supertype does and then some more, so it can be used as substitute for the
+	// “parent” or “supertype”.
+	//
+	// Example:
+	// static Robot fight(Robot first, Robot second)
+	//
+	// The previous line indicates that a fight always take place
+	// between two Robots. But as Fighter extends Robot, a fight can also take place
+	// between a Robot and a Fighter. When a Fighter is passed to the fight method,
+	// it is subtyping.
+	//
+	// Polymorphism:
+	//
+	// Polymorphism means "many forms", and it occurs when we have classes that
+	// are related to each other by inheritance.
+	// Inheritance lets us inherit
+	// attributes and methods from another class. Polymorphism uses those methods to
+	// perform different tasks. This allows us to perform a single action in
+	// different ways.
+	//
+	// Example:
+	// rollDice()
+	//
+	// Depending of the object that calls the fire method, the implementation of the
+	// rollDice method (and so its behaviour) will not be the same.
 
 }

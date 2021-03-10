@@ -2,19 +2,19 @@ package fr.umlv.fight;
 
 public class Arena {
 
-	static Robot fight(Robot first, Robot second) {
-		boolean fightTurn = true;
+	static Robot fight(Robot first, Robot second) {		
+		boolean firstRobotTurn = true;
 
 		while (!first.isDead() && !second.isDead()) {
-			if (fightTurn) {
+			if (firstRobotTurn) {
 				first.fire(second);
 			} else {
 				second.fire(first);
 			}
-			fightTurn = !fightTurn;
+			firstRobotTurn = !firstRobotTurn;
 		}
 		
-		 return !fightTurn ? first : second;
+		 return !firstRobotTurn ? first : second;
 	}
 
 }
