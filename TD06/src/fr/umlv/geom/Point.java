@@ -2,8 +2,9 @@ package fr.umlv.geom;
 
 // Ex1 - Q.01
 // The fields of the class are declared private.
-// So when the method translate method can not asks to modify these fields.
-// Point are indeed immutable.
+// So the method translate method can not ask to modify these fields.
+// Point are indeed immutable in this case.
+
 public class Point {
 	private int x;
 	private int y;
