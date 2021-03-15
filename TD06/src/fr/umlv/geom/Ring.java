@@ -34,6 +34,7 @@ public class Ring extends Circle {
 		return super.toString() + " with internal radius of " + this.internalRadius;
 	}
 
+	@Override
 	public boolean contains(final Point p) {
 		Circle internalCircle = new Circle(getCenter(), internalRadius);
 		return super.contains(p) && !internalCircle.contains(p);
