@@ -47,7 +47,7 @@ public class LinkedList<T> {
 			int i = 0;
 			for (var tmp = this.link; tmp != null; tmp = tmp.next) {
 				builder.append(tmp.value);
-				if(i != this.size - 1) {
+				if (i != this.size - 1) {
 					builder.append(" - ");
 				}
 				i++;
@@ -55,28 +55,29 @@ public class LinkedList<T> {
 		} else {
 			builder.append("empty");
 		}
-		
+
 		builder.append("]");
 
 		return builder.toString();
 	}
-	
+
 	// Ex3 - Q.04
 	// contains method
 	// contains uses the function equals(Object o).
 	// Then, the signature of equals will not work with the generic type T
 	public boolean contains(Object o) {
-		if(o == null) return false;
-		
+		if (o == null)
+			return false;
+
 		Boolean res = o.equals(this.link.value);
 
 		for (var link = this.link; link != null; link = link.next) {
-            if (o.equals(link.value)) {
-                res = true;
-                break;
-            }
-        }
-        
-        return res;
+			if (o.equals(link.value)) {
+				res = true;
+				break;
+			}
+		}
+
+		return res;
 	}
 }
