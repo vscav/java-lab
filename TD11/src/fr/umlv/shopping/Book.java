@@ -2,7 +2,7 @@ package fr.umlv.shopping;
 
 import java.util.Objects;
 
-public class Book extends Item {
+public class Book extends DigitalItem {
 	private final String author;
 	private final String title;
 	private final int price;
@@ -18,7 +18,7 @@ public class Book extends Item {
 
 	@Override
 	public int getPrice() {
-		return price;
+		return this.price;
 	}
 	
 	@Override
@@ -33,7 +33,7 @@ public class Book extends Item {
 
 	@Override
 	public String toString() {
-		return title + ", from " + author;
+		return this.title + ", from " + this.author;
 	}
 
 	@Override
@@ -42,11 +42,11 @@ public class Book extends Item {
 			return false;
 		}
 		var b = (Book) o;
-		return price == b.price && title.equals(b.title) && author.equals(b.author);
+		return this.price == b.price && this.title.equals(b.title) && this.author.equals(b.author);
 	}
 
 	@Override
 	public int hashCode() {
-		return price ^ author.hashCode() ^ title.hashCode();
+		return this.price ^ this.author.hashCode() ^ this.title.hashCode();
 	}
 }

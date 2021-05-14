@@ -2,7 +2,7 @@ package fr.umlv.shopping;
 
 import java.util.Objects;
 
-public class PrePaid extends Item {
+public class PrePaid extends DigitalItem {
 	private final int value;
 	private final int validTime;
 
@@ -13,10 +13,10 @@ public class PrePaid extends Item {
 
 	@Override
 	public int getPrice() {
-		if (validTime <= 2) { // if validity less than 2 weeks,
-			return value - value * 20 / 100; // 20% discount
+		if (this.validTime <= 2) { // if validity less than 2 weeks,
+			return this.value - this.value * 20 / 100; // 20% discount
 		}
-		return value;
+		return this.value;
 	}
 	
 	@Override
@@ -31,6 +31,6 @@ public class PrePaid extends Item {
 
 	@Override
 	public String toString() {
-		return String.format("Pre-paid card (%d,%02dâ‚¬), validity: %s weeks)", value / 100, value % 100, validTime);
+		return String.format("Pre-paid card (%d,%02dâ‚¬), validity: %s weeks)", this.value / 100, this.value % 100, this.validTime);
 	}
 }

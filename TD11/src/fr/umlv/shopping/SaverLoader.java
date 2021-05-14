@@ -17,32 +17,33 @@ public class SaverLoader {
 	static final String VIDEO_GAME_TYPE = "G";
 	static final String PREPAID_TYPE = "P";
 
-	public static void saveInTextFormat(List<Item> items, BufferedWriter stream) throws IOException {
-		for (Item item : items) {
+	public static void saveInTextFormat(List<DigitalItem> items, BufferedWriter stream) throws IOException {
+		for (DigitalItem item : items) {
 			stream.write((item).toTextFormat());
 			stream.newLine();
 		}
 	}
-	
-	public static List<Item> loadFromTextFormat(BufferedReader stream) throws IOException {
-		List<Item> items = new ArrayList<Item>();
+
+	public static List<DigitalItem> loadFromTextFormat(BufferedReader stream) throws IOException {
+		List<DigitalItem> items = new ArrayList<DigitalItem>();
 		String line = null;
 		while ((line = stream.readLine()) != null) {
-            String[] strings = line.split(SEPARATOR);
-            switch(strings[0]) {
-            case "B":
-              items.add(new Book(strings[3], strings[2], Integer.parseInt(strings[1])));
-              break;
-            case "G":
-            	items.add(new VideoGame(strings[2], VideoGame.Console.valueOf(strings[3]), Integer.parseInt(strings[1])));
-              break;
-            case "P":
-                items.add(new PrePaid(Integer.parseInt(strings[1]), Integer.parseInt(strings[2])));
-                break;
-            default:
-              break;
-          }
-         }   
+			String[] strings = line.split(SEPARATOR);
+			switch (strings[0]) {
+			case "B":
+				items.add(new Book(strings[3], strings[2], Integer.parseInt(strings[1])));
+				break;
+			case "G":
+				items.add(
+						new VideoGame(strings[2], VideoGame.Console.valueOf(strings[3]), Integer.parseInt(strings[1])));
+				break;
+			case "P":
+				items.add(new PrePaid(Integer.parseInt(strings[1]), Integer.parseInt(strings[2])));
+				break;
+			default:
+				break;
+			}
+		}
 		return items;
 	}
 
@@ -60,23 +61,21 @@ public class SaverLoader {
 		var list = List.of(sdb, zelda, pp100);
 
 		Path saveFilePath = Paths.get("savedFile.txt");
-		
+
 		try (var writer = Files.newBufferedWriter(saveFilePath, StandardCharsets.UTF_8, StandardOpenOption.CREATE)) {
 			SaverLoader.saveInTextFormat(list, writer);
-		}
-		catch(IOException e) {
+		} catch (IOException e) {
 			System.out.println(e);
 		}
-		
+
 		Path filePathToLoad = Paths.get("testFile.txt");
-		
+
 		try (var reader = Files.newBufferedReader(filePathToLoad, StandardCharsets.UTF_8)) {
-			List<Item> items = SaverLoader.loadFromTextFormat(reader);
-			for(Item item : items) {
+			List<DigitalItem> items = SaverLoader.loadFromTextFormat(reader);
+			for (DigitalItem item : items) {
 				System.out.println(item);
 			}
-		}
-		catch(IOException e) {
+		} catch (IOException e) {
 			System.out.println(e);
 		}
 	}

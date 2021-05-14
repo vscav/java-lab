@@ -2,7 +2,7 @@ package fr.umlv.shopping;
 
 import java.util.Objects;
 
-public class VideoGame extends Item {
+public class VideoGame extends DigitalItem {
 	public enum Console { // enum are static
 		PS3, PS4, XBOX, WII, DS
 	};
@@ -22,7 +22,7 @@ public class VideoGame extends Item {
 
 	@Override
 	public int getPrice() {
-		return price;
+		return this.price;
 	}
 	
 	@Override
@@ -37,6 +37,6 @@ public class VideoGame extends Item {
 
 	@Override
 	public String toString() {
-		return title + ", for " + console.name();
+		return this.title + ", for " + this.console.name();
 	}
 }
