@@ -70,7 +70,7 @@ public class SaverLoader {
 
 		Path filePathToLoad = Paths.get("testFile.txt");
 
-		try (var reader = Files.newBufferedReader(filePathToLoad, StandardCharsets.UTF_8)) {
+		try (var reader = Files.newBufferedReader(filePathToLoad, StandardCharsets.ISO_8859_1)) {
 			List<DigitalItem> items = SaverLoader.loadFromTextFormat(reader);
 			for (DigitalItem item : items) {
 				System.out.println(item);
