@@ -25,6 +25,7 @@ public class Exercise2 {
 	// stream to transform them into other elements and return the new stream
 	// We then use the forEach method of the Stream object to perform an operation
 	// for each element
+	
 	public static List<String> upperCase2(List<String> list) {
 		List<String> uppercases = new ArrayList<String>();
 		list.stream().map(str -> str.toUpperCase()).forEach(str -> uppercases.add(str));
